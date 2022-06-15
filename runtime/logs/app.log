@@ -735,3 +735,65 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1655315368.593
     'REQUEST_TIME' => 1655315368
 ]
+2022-06-15 17:55:38 [127.0.0.1][-][elk63u93r6d3d4pv42et9gp9fp][error][yii\base\ErrorException:8] yii\base\ErrorException: Undefined variable: dataProvider in /var/www/html/basic/views/invoice/index.php:26
+Stack trace:
+#0 /var/www/html/basic/views/invoice/index.php(26): yii\base\ErrorHandler->handleError()
+#1 /var/www/html/basic/vendor/yiisoft/yii2/base/View.php(347): require('/var/www/html/b...')
+#2 /var/www/html/basic/vendor/yiisoft/yii2/base/View.php(257): yii\base\View->renderPhpFile()
+#3 /var/www/html/basic/vendor/yiisoft/yii2/base/View.php(156): yii\base\View->renderFile()
+#4 /var/www/html/basic/vendor/yiisoft/yii2/base/Controller.php(407): yii\base\View->render()
+#5 /var/www/html/basic/controllers/InvoiceController.php(28): yii\base\Controller->render()
+#6 [internal function]: app\controllers\InvoiceController->actionIndex()
+#7 /var/www/html/basic/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array()
+#8 /var/www/html/basic/vendor/yiisoft/yii2/base/Controller.php(178): yii\base\InlineAction->runWithParams()
+#9 /var/www/html/basic/vendor/yiisoft/yii2/base/Module.php(552): yii\base\Controller->runAction()
+#10 /var/www/html/basic/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction()
+#11 /var/www/html/basic/vendor/yiisoft/yii2/base/Application.php(384): yii\web\Application->handleRequest()
+#12 /var/www/html/basic/web/index.php(12): yii\base\Application->run()
+#13 {main}
+2022-06-15 17:55:38 [127.0.0.1][-][elk63u93r6d3d4pv42et9gp9fp][info][application] $_GET = [
+    'r' => 'invoice/index'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'elk63u93r6d3d4pv42et9gp9fp'
+    '_csrf' => '31ca56aedec09cfd79d2a11a6aaa7014c55b3949027212adc6638dab7bcbd363a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"hBlJWgO9U-VEBwH10XwseZLKt_0yb4nk\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'DOCUMENT_ROOT' => '/var/www/html/basic/web'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'REMOTE_PORT' => '41666'
+    'SERVER_SOFTWARE' => 'PHP 7.4.3 Development Server'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_PORT' => '8080'
+    'REQUEST_URI' => '/index.php?r=invoice/index'
+    'REQUEST_METHOD' => 'GET'
+    'SCRIPT_NAME' => '/index.php'
+    'SCRIPT_FILENAME' => '/var/www/html/basic/web/index.php'
+    'PHP_SELF' => '/index.php'
+    'QUERY_STRING' => 'r=invoice/index'
+    'HTTP_HOST' => 'localhost:8080'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:101.0) Gecko/20100101 Firefox/101.0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_LANGUAGE' => 'fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_COOKIE' => 'PHPSESSID=elk63u93r6d3d4pv42et9gp9fp; _csrf=31ca56aedec09cfd79d2a11a6aaa7014c55b3949027212adc6638dab7bcbd363a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22hBlJWgO9U-VEBwH10XwseZLKt_0yb4nk%22%3B%7D'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'REQUEST_TIME_FLOAT' => 1655315738.1852
+    'REQUEST_TIME' => 1655315738
+]
