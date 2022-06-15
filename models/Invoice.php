@@ -53,16 +53,7 @@ class Invoice extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * Gets query for [[FkCustomer]].
-     *
-     * @return \yii\db\ActiveQuery|yii\db\ActiveQuery
-     */
-    public function getFkCustomer()
-    {
-        return $this->hasOne(Customer::className(), ['id_customer' => 'fk_customer']);
-    }
-
+  
     /**
      * Gets query for [[InvoiceItems]].
      *
