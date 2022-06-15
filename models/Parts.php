@@ -56,10 +56,19 @@ class Parts extends \yii\db\ActiveRecord
     /**
      * Gets query for [[InvoiceItems]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return \yii\db\ActiveQuery|yii\db\ActiveQuery
      */
     public function getInvoiceItems()
     {
         return $this->hasMany(InvoiceItems::class, ['fk_part' => 'id_part']);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return PartsQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new PartsQuery(get_called_class());
     }
 }

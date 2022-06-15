@@ -1,9 +1,46 @@
 <?php
-/* @var $this yii\web\View */
-?>
-<h1>parts/index</h1>
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\grid\ActionColumn;
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\PartsSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Parts';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="parts-index">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <p>
+        <?= Html::a('Create Parts', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id_part',
+            'name',
+            'code',
+            'price',
+            'stock',
+            [
+                'class' => ActionColumn::class,
+                'urlCreator' => function ($action, app\models\Parts $model, $key, $index, $column) {
+                    return Url::toRoute([$action, 'id_part' => $model->id_part]);
+                 }
+            ],
+        ],
+    ]); ?>
+
+
+</div>
