@@ -56,7 +56,7 @@ class Invoice extends \yii\db\ActiveRecord
     /**
      * Gets query for [[FkCustomer]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return \yii\db\ActiveQuery|yii\db\ActiveQuery
      */
     public function getFkCustomer()
     {
@@ -66,10 +66,19 @@ class Invoice extends \yii\db\ActiveRecord
     /**
      * Gets query for [[InvoiceItems]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return \yii\db\ActiveQuery|yii\db\ActiveQuery
      */
     public function getInvoiceItems()
     {
         return $this->hasMany(InvoiceItems::className(), ['fk_invoice' => 'id_invoice']);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return InvoiceQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new InvoiceQuery(get_called_class());
     }
 }
