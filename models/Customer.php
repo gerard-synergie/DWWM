@@ -65,6 +65,6 @@ class Customer extends \yii\db\ActiveRecord
      */
     public function getInvoices()
     {
-        return $this->hasMany(Invoice::className(), ['fk_customer' => 'id_customer']);
+        return $this->hasMany(Invoice::class, ['fk_customer' => 'id_customer'])->inverseOf('customer');
     }
 }

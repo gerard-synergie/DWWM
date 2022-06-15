@@ -36,7 +36,7 @@ class Invoice extends \yii\db\ActiveRecord
             [['date'], 'safe'],
             [['summary'], 'number'],
             [['id_invoice'], 'unique'],
-            [['fk_customer'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::className(), 'targetAttribute' => ['fk_customer' => 'id_customer']],
+            [['fk_customer'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::class, 'targetAttribute' => ['fk_customer' => 'id_customer']],
         ];
     }
 
@@ -60,7 +60,7 @@ class Invoice extends \yii\db\ActiveRecord
      */
     public function getFkCustomer()
     {
-        return $this->hasOne(Customer::className(), ['id_customer' => 'fk_customer']);
+        return $this->hasOne(Customer::class, ['id_customer' => 'fk_customer']);
     }
 
     /**
@@ -70,7 +70,7 @@ class Invoice extends \yii\db\ActiveRecord
      */
     public function getInvoiceItems()
     {
-        return $this->hasMany(InvoiceItems::className(), ['fk_invoice' => 'id_invoice']);
+        return $this->hasMany(InvoiceItems::class, ['fk_invoice' => 'id_invoice']);
     }
 
     /**

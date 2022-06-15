@@ -36,8 +36,8 @@ class InvoiceItems extends \yii\db\ActiveRecord
             [['id_item', 'fk_part', 'fk_invoice', 'qty'], 'integer'],
             [['price_row'], 'number'],
             [['id_item'], 'unique'],
-            [['fk_invoice'], 'exist', 'skipOnError' => true, 'targetClass' => Invoice::className(), 'targetAttribute' => ['fk_invoice' => 'id_invoice']],
-            [['fk_part'], 'exist', 'skipOnError' => true, 'targetClass' => Parts::className(), 'targetAttribute' => ['fk_part' => 'id_part']],
+            [['fk_invoice'], 'exist', 'skipOnError' => true, 'targetClass' => Invoice::class, 'targetAttribute' => ['fk_invoice' => 'id_invoice']],
+            [['fk_part'], 'exist', 'skipOnError' => true, 'targetClass' => Parts::class, 'targetAttribute' => ['fk_part' => 'id_part']],
         ];
     }
 
@@ -62,7 +62,7 @@ class InvoiceItems extends \yii\db\ActiveRecord
      */
     public function getFkInvoice()
     {
-        return $this->hasOne(Invoice::className(), ['id_invoice' => 'fk_invoice']);
+        return $this->hasOne(Invoice::class, ['id_invoice' => 'fk_invoice']);
     }
 
     /**
@@ -72,6 +72,6 @@ class InvoiceItems extends \yii\db\ActiveRecord
      */
     public function getFkPart()
     {
-        return $this->hasOne(Parts::className(), ['id_part' => 'fk_part']);
+        return $this->hasOne(Parts::class, ['id_part' => 'fk_part']);
     }
 }

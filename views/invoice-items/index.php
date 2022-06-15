@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'qty',
             'price_row',
             [
-                'class' => ActionColumn::className(),
+                'class' => ActionColumn::class,
                 'urlCreator' => function ($action, \app\models\InvoiceItems $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id_item' => $model->id_item]);
                  }

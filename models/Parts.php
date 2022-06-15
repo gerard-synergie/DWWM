@@ -60,6 +60,6 @@ class Parts extends \yii\db\ActiveRecord
      */
     public function getInvoiceItems()
     {
-        return $this->hasMany(InvoiceItems::className(), ['fk_part' => 'id_part']);
+        return $this->hasMany(InvoiceItems::class, ['fk_part' => 'id_part']);
     }
 }

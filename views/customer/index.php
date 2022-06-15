@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'zipcode',
             'town',
             [
-                'class' => ActionColumn::className(),
+                'class' => ActionColumn::class,
                 'urlCreator' => function ($action, \app\models\Customer $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id_customer' => $model->id_customer]);
                  }
