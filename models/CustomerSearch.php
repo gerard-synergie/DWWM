@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Customer;
+use app\models\Country;
 
 /**
- * CustomerSearch represents the model behind the search form of `app\models\Customer`.
+ * CustomerSearch represents the model behind the search form of `app\models\Country`.
  */
-class CustomerSearch extends Customer
+class CustomerSearch extends Country
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class CustomerSearch extends Customer
     public function rules()
     {
         return [
-            [['id_customer'], 'integer'],
-            [['firstname', 'lastname', 'mail', 'adress1', 'adress2', 'zipcode', 'town'], 'safe'],
+            [['code', 'name'], 'safe'],
+            [['population'], 'integer'],
         ];
     }
 
@@ -40,7 +40,7 @@ class CustomerSearch extends Customer
      */
     public function search($params)
     {
-        $query = Customer::find();
+        $query = Country::find();
 
         // add conditions that should always apply here
 
@@ -58,16 +58,11 @@ class CustomerSearch extends Customer
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id_customer' => $this->id_customer,
+            'population' => $this->population,
         ]);
 
-        $query->andFilterWhere(['like', 'firstname', $this->firstname])
-            ->andFilterWhere(['like', 'lastname', $this->lastname])
-            ->andFilterWhere(['like', 'mail', $this->mail])
-            ->andFilterWhere(['like', 'adress1', $this->adress1])
-            ->andFilterWhere(['like', 'adress2', $this->adress2])
-            ->andFilterWhere(['like', 'zipcode', $this->zipcode])
-            ->andFilterWhere(['like', 'town', $this->town]);
+        $query->andFilterWhere(['like', 'code', $this->code])
+            ->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }
