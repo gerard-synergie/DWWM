@@ -32,6 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'date',
             'summary',
             'fk_customer',
+          //  'parent_host_id.name',
+        [
+            'label' => 'Name',
+            'value' => 'customer.lastname',
+        ],
             [
                 'class' => ActionColumn::class,
                 'urlCreator' => function ($action, app\models\Invoice $model, $key, $index, $column) {

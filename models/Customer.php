@@ -61,10 +61,19 @@ class Customer extends \yii\db\ActiveRecord
     /**
      * Gets query for [[Invoices]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return \yii\db\ActiveQuery|InvoiceQuery
      */
     public function getInvoices()
     {
-        return $this->hasMany(Invoice::class, ['fk_customer' => 'id_customer'])->inverseOf('customer');
+        return $this->hasMany(Invoice::class, ['fk_customer' => 'id_customer']);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return CustomerQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new CustomerQuery(get_called_class());
     }
 }

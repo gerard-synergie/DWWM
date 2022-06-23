@@ -33,12 +33,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'lastname',
             'mail:ntext',
             'adress1',
-            'adress2',
-            'zipcode',
-            'town',
+            //'adress2',
+            //'zipcode',
+            //'town',
             [
                 'class' => ActionColumn::class,
-                'urlCreator' => function ($action, \app\models\Customer $model, $key, $index, $column) {
+                'urlCreator' => function ($action, app\models\Customer $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id_customer' => $model->id_customer]);
                  }
             ],

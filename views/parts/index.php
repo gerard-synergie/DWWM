@@ -32,10 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'code',
             'price',
-            //'stock',
+            'stock',
             [
-                'class' => ActionColumn::class,
-                'urlCreator' => function ($action, app\models\Parts $model, $key, $index, $column) {
+                'class' => ActionColumn::className(),
+                'urlCreator' => function ($action, Parts $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id_part' => $model->id_part]);
                  }
             ],

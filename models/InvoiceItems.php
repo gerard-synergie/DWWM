@@ -36,8 +36,8 @@ class InvoiceItems extends \yii\db\ActiveRecord
             [['id_item', 'fk_part', 'fk_invoice', 'qty'], 'integer'],
             [['price_row'], 'number'],
             [['id_item'], 'unique'],
-            [['fk_invoice'], 'exist', 'skipOnError' => true, 'targetClass' => Invoice::class, 'targetAttribute' => ['fk_invoice' => 'id_invoice']],
-            [['fk_part'], 'exist', 'skipOnError' => true, 'targetClass' => Parts::class, 'targetAttribute' => ['fk_part' => 'id_part']],
+            [['fk_invoice'], 'exist', 'skipOnError' => true, 'targetClass' => Invoice::className(), 'targetAttribute' => ['fk_invoice' => 'id_invoice']],
+            [['fk_part'], 'exist', 'skipOnError' => true, 'targetClass' => Parts::className(), 'targetAttribute' => ['fk_part' => 'id_part']],
         ];
     }
 
@@ -58,20 +58,29 @@ class InvoiceItems extends \yii\db\ActiveRecord
     /**
      * Gets query for [[FkInvoice]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return \yii\db\ActiveQuery|InvoiceQuery
      */
     public function getFkInvoice()
     {
-        return $this->hasOne(Invoice::class, ['id_invoice' => 'fk_invoice']);
+        return $this->hasOne(Invoice::className(), ['id_invoice' => 'fk_invoice']);
     }
 
     /**
      * Gets query for [[FkPart]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return \yii\db\ActiveQuery|PartsQuery
      */
     public function getFkPart()
     {
-        return $this->hasOne(Parts::class, ['id_part' => 'fk_part']);
+        return $this->hasOne(Parts::className(), ['id_part' => 'fk_part']);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return CustomerQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new CustomerQuery(get_called_class());
     }
 }

@@ -39,10 +39,12 @@ class InvoiceSearch extends Invoice
      *
      * @return ActiveDataProvider
      */
+
+    
     public function search($params)
     {
-        $query = Invoice::find();
-
+       $query = Invoice::find();
+       $query->with('customer');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -57,14 +59,15 @@ class InvoiceSearch extends Invoice
             return $dataProvider;
         }
 
-        // grid filtering conditions
+        //grid filtering conditions
         $query->andFilterWhere([
             'id_invoice' => $this->id_invoice,
             'date' => $this->date,
             'summary' => $this->summary,
             'fk_customer' => $this->fk_customer,
+           // 'customer.lastname' => $this->getCustomerName(),
         ]);
-
+        
         return $dataProvider;
     }
 }

@@ -11,7 +11,7 @@ use Yii;
  * @property string $date
  * @property float $summary
  * @property int $fk_customer
- *
+ * 
  * @property Customer $fkCustomer
  * @property InvoiceItems[] $invoiceItems
  */
@@ -40,25 +40,13 @@ class Invoice extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id_invoice' => 'Id Invoice',
-            'date' => 'Date',
-            'summary' => 'Summary',
-            'fk_customer' => 'Fk Customer',
-        ];
-    }
-
+   
     /**
      * Gets query for [[FkCustomer]].
      *
      * @return \yii\db\ActiveQuery|yii\db\ActiveQuery
      */
-    public function getFkCustomer()
+    public function getCustomer()
     {
         return $this->hasOne(Customer::class, ['id_customer' => 'fk_customer']);
     }
@@ -72,6 +60,24 @@ class Invoice extends \yii\db\ActiveRecord
     {
         return $this->hasMany(InvoiceItems::class, ['fk_invoice' => 'id_invoice']);
     }
+
+
+ /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        
+        
+        return [
+            'id_invoice' => 'Id Invoice',
+            'date' => 'Date',
+            'summary' => 'Summary',
+            'fk_customer' => 'Fk Customer',
+           'customer.lastname'=> 'Name',
+        ];
+    }
+
 
     /**
      * {@inheritdoc}

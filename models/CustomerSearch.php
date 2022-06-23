@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Country;
+use app\models\Customer;
 
 /**
- * CustomerSearch represents the model behind the search form of `app\models\Country`.
+ * CustomerSearch represents the model behind the search form of `app\models\Customer`.
  */
-class CustomerSearch extends Country
+class CustomerSearch extends Customer
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class CustomerSearch extends Country
     public function rules()
     {
         return [
-            [['code', 'name'], 'safe'],
-            [['population'], 'integer'],
+            [['id_customer'], 'integer'],
+            [['firstname', 'lastname', 'mail', 'adress1', 'adress2', 'zipcode', 'town'], 'safe'],
         ];
     }
 
@@ -30,6 +30,14 @@ class CustomerSearch extends Country
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
+    /* 
+      Gets query for customer lastname
+
+   */
+ 
+   public function getCustomerName() {
+    return $this->getCustomer()->lastname;
+}
 
     /**
      * Creates data provider instance with search query applied
@@ -40,7 +48,7 @@ class CustomerSearch extends Country
      */
     public function search($params)
     {
-        $query = Country::find();
+        $query = Customer::find();
 
         // add conditions that should always apply here
 
@@ -58,11 +66,16 @@ class CustomerSearch extends Country
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'population' => $this->population,
+            'id_customer' => $this->id_customer,
         ]);
 
-        $query->andFilterWhere(['like', 'code', $this->code])
-            ->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'firstname', $this->firstname])
+            ->andFilterWhere(['like', 'lastname', $this->lastname])
+            ->andFilterWhere(['like', 'mail', $this->mail])
+            ->andFilterWhere(['like', 'adress1', $this->adress1])
+            ->andFilterWhere(['like', 'adress2', $this->adress2])
+            ->andFilterWhere(['like', 'zipcode', $this->zipcode])
+            ->andFilterWhere(['like', 'town', $this->town]);
 
         return $dataProvider;
     }
